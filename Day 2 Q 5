@@ -1,0 +1,17 @@
+// You are using GCC
+#include<iostream>
+using namespace std;
+int main()
+{
+    char f,s;
+    int n;
+    cin>>f>>s>>n;
+    for(int i=1;i<=n;i++)
+    {
+        char ch;
+        ch=(i%2!=0)?f:s;
+        for(int j=0;j<i;j++)
+        cout<<ch;
+        cout<<" ";
+    }
+}
