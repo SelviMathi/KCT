@@ -1,0 +1,23 @@
+// You are using GCC
+#include <iostream>
+#include<cmath>
+using namespace std;
+int main() {
+    int limit,count=0,num=2;
+    cin >> limit;
+    while (count < limit) {
+        bool isPrime = true;
+        for (int i = 2; i <= sqrt(num); i++) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            cout << num << " ";
+            count++;
+        }
+        num++;
+    }
+    return 0;
+}
