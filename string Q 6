@@ -1,0 +1,24 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int  main()
+{
+    string str;
+    cin>>str;
+    int n;
+    cin>>n;
+     
+    for(int j=0;j<str.length();j+=4)
+    cout<<str[j]<<" ";
+    
+    cout<<"\n";
+    
+    for(int  j=1;j<str.length();j+=2)
+    cout<<str[j];
+    
+    cout<<"\n";
+    
+    for(int j=2;j<str.length();j+=4)
+    cout<<str[j]<<" ";
+    
+}
