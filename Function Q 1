@@ -1,0 +1,19 @@
+// You are using GCC
+#include <bits/stdc++.h>
+using namespace std;
+
+int getAllWays(int sum, int power, int base) {
+    int res = pow(base, power);
+    if (res == sum) 
+    return 1;
+    if (res > sum) 
+    return 0;
+    return getAllWays(sum - res, power, base + 1) + getAllWays(sum, power, base + 1);
+}
+
+int main() {
+    int x, n;
+    cin >> x >> n;
+    cout << getAllWays(x, n, 1) << endl;
+    return 0;
+}
