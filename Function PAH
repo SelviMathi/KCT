@@ -1,0 +1,244 @@
+1.A statistician collected data on the heights of students in a class and wanted to visualize the distribution using a histogram. The data consists of the heights of 20 students, with each height value ranging from 1 to 10 (inclusive).
+He decides to use a program to generate the histogram, using pointers.
+Function Specifications: void printHistogram(int *hist, int n);
+
+#include <iostream>
+using namespace std;
+
+void printHistogram(int* hist, int n);
+
+int main() {
+    int inputValue;
+    cin >> inputValue;
+
+    if (inputValue > 0 && inputValue <= 20) {
+        int hist[inputValue];
+
+        for (int i = 0; i < inputValue; ++i) {
+            int hist_value;
+            cin >> hist_value;
+
+            if (hist_value >= 1 && hist_value <= 10) {
+                hist[i] = hist_value;
+            } else {
+                cout << "Invalid";
+                return 0;
+            }
+        }
+
+        printHistogram(hist, inputValue);
+    } else {
+        cout << "Invalid";
+    }
+
+    return 0;
+}
+
+void printHistogram(int* hist, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < hist[i]; ++j) {
+            cout << "x";
+        }
+        cout << endl;
+    }
+}
+
+
+2.Problem Statement
+Sam, a programmer, is looking for an efficient way to compare two arrays of integers and determine if they are equal. 
+Your task is to create a program for Sam using dynamic memory allocation to achieve this task.
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    int* array1 = new int[n];
+    int* array2 = new int[n];
+    for (int i = 0; i < n; ++i) {
+        cin >> array1[i];
+    }
+    for (int i = 0; i < n; ++i){
+        cin >> array2[i];
+    }
+    bool equal = true;
+    for (int i = 0; i < n; ++i) {
+        if (array1[i] != array2[i]) {
+            equal = false;
+            break;
+        }
+    }
+    if (equal) {
+        cout << "Equal" << endl;
+    } else {
+        cout << "Not equal" << endl;
+    }
+
+    delete[] array1;
+    delete[] array2;
+
+    return 0;
+}
+
+3.Problem Statement
+In a mathematics competition, contestants are required to compare two numbers and identify the larger one. To streamline the evaluation process, contestants must create a program that utilizes pointers to find the largest of two numbers. 
+Imagine you are a contestant, and solve the program.
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numa = 0;
+    int numb = 0;
+    int* result;
+
+    cin >> numa;
+    cin >> numb;
+
+    int* ptr1 = &numa;
+    int* ptr2 = &numb;
+
+    if (*ptr1 > *ptr2)
+        result = ptr1;
+    else
+        result = ptr2;
+
+    cout << *result ;
+
+    return 0;
+}
+
+4.Problem Statement
+Imagine you are creating a ticket pricing system for an amusement park. 
+There are two types of tickets: kids (under 18) and adults (18 and above).
+Kid's tickets cost Rs. 10.00 each.
+Adult tickets cost Rs. 20.00 each.
+Write a program using pointers that takes a visitor's age and the number of tickets they want to buy in the mentioned age category as input. Calculate the total cost and display it.
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    double CHILD_PRICE = 10.0;
+    double ADULT_PRICE = 20.0;
+
+    double* pricePtr;
+    double price;
+
+    int age;
+    int numTickets;
+
+    cin >> age;
+    cin >> numTickets;
+
+    if (age >= 0 && age < 18) {
+        pricePtr = &CHILD_PRICE;
+    } 
+    else {
+        pricePtr = &ADULT_PRICE;
+    }
+
+    price = *pricePtr * numTickets;
+
+    cout << fixed << setprecision(2) << "Rs." << price;
+
+    return 0;
+}
+
+5.Problem Statement
+Rakshita is studying mathematics and is intrigued by the Fibonacci sequence. She wants to calculate the last digit of a Fibonacci number quickly and efficiently. 
+She asks for your help to write a program that calculates and returns the last digit of the nth Fibonacci number using a function. The program should use call-by-reference to efficiently return the result.
+#include <iostream>
+using namespace std;
+
+void fiboLastDigit(int a, int& result);
+
+void fiboLastDigit(int a, int& result) {
+    long long int x = 0, y = 0, z = 1, i;
+    
+    for (i = 0; i < a-1; i++) {
+        z = y + z;
+        x = z;
+        z = y;
+        y = x;
+    }
+
+    result = x % 10;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int result;
+    fiboLastDigit(n, result);
+    cout << result;
+    return 0;
+}
+
+6.Arun wants to write a program in which an array of N elements and a value of M are taken as input. He has to find out the factors of M that are present in the given array. 
+Help him write the code to print only the factors of M that are present in the given array.
+Function Specification: findFactors(int arr[], int, int)
+#include <iostream>
+using namespace std;
+
+void findFactorsRecursive(int arr[], int n, int key, int currentIndex) {
+    if (currentIndex == n) {
+        return;
+    }
+
+    if (key % arr[currentIndex] == 0) {
+        cout << arr[currentIndex] << " ";
+    }
+
+    findFactorsRecursive(arr, n, key, currentIndex + 1);
+}
+
+void findFactors(int arr[], int n, int key) {
+    findFactorsRecursive(arr, n, key, 0);
+}
+
+int main() {
+    int n, key;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cin >> key;
+    findFactors(arr, n, key);
+    return 0;
+}
+
+7.Problem Statement
+Bob is a mathematician who is fascinated by numbers and their properties. He is currently working on a research project involving numbers with specific divisor patterns. 
+Bob needs your help in identifying numbers that have exactly 9 divisors.
+Write a program that assists Bob in finding numbers with exactly 9 divisors within a given range of numbers.
+Function Specification: void check(int n) 
+#include <iostream>
+
+void check(int n) {
+    int count = 0;
+    
+    for (int i = 36; i <= n; i++) {
+        int d = 0;
+        
+        for (int j = 1; j <= i; j++) {
+            if (i % j == 0) {
+                d++;
+            }
+        }
+        
+        if (d == 9) {
+            std::cout << i << " ";
+            count++;
+        }
+    }
+    
+    std::cout << std::endl << count << std::endl;
+}
+
+int main() {
+    int n;
+    std::cin >> n;
+    check(n);
+    return 0;
+}
