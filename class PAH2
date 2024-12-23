@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class StringInfo {
+public:
+    string str;
+    int charCount;
+};
+
+StringInfo analyzeString(const string& input) {
+    StringInfo info;
+    info.str = input;
+    info.charCount = input.length();
+    return info;
+}
+
+int main() {
+    string input;
+    cin >> input;
+
+    StringInfo stringInfo;
+
+    stringInfo = analyzeString(input);
+
+    cout << "Input string: " << stringInfo.str << endl;
+    cout << "Character count: " << stringInfo.charCount << endl;
+
+    return 0;
+}
