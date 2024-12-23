@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+class TimeDuration {
+private:
+    int hours,minutes,seconds;
+
+public:
+    TimeDuration(int h, int m, int s) {
+        hours = h;
+        minutes = m;
+        seconds = s;
+    }
+
+    void display() {
+        cout << "Time: " << hours << " hours, " << minutes << " minutes, " << seconds << " seconds" << std::endl;
+    }
+
+    TimeDuration add(TimeDuration other) {
+        int totalHours = hours + other.hours;
+        int totalMinutes = minutes + other.minutes;
+        int totalSeconds = seconds + other.seconds;
+
+        if (totalSeconds >= 60) {
+            totalMinutes += totalSeconds / 60;
+            totalSeconds %= 60;
+        }
+        if (totalMinutes >= 60) {
+            totalHours += totalMinutes / 60;
+            totalMinutes %= 60;
+        }
+
+        return TimeDuration(totalHours, totalMinutes, totalSeconds);
+    }
+};
+
+int main() {
+    int hours1, minutes1, seconds1;
+    int hours2, minutes2, seconds2;
+
+    cin >> hours1 >> minutes1 >> seconds1;
+    cin >> hours2 >> minutes2 >> seconds2;
+
+    TimeDuration duration1(hours1, minutes1, seconds1);
+    TimeDuration duration2(hours2, minutes2, seconds2);
+
+    TimeDuration result = duration1.add(duration2);
+
+    result.display();
+
+    return 0;
+}
