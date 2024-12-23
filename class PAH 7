@@ -1,0 +1,49 @@
+#include <iomanip> // Include the <iomanip> header for std::fixed and std::setprecision
+#include <iostream>
+using namespace std;
+
+class NumericData {
+private:
+    double* data;
+    int size;
+
+public:
+    NumericData(int dataSize) {
+        size = dataSize;
+        data = new double[size];
+    }
+    NumericData(const NumericData& other) {
+        size = other.size;
+        data = new double[size];
+        for (int i = 0; i < size; ++i) {
+            data[i] = other.data[i];
+        }
+    }
+    void setData(int index, double value) {
+        if (index >= 0 && index < size) {
+            data[index] = value;
+        }
+    }
+    void displayNumericData(const string& label) {
+        cout << label << " ";
+        cout << fixed << setprecision(1); // Set output to display one decimal place
+        for (int i = 0; i < size; ++i) {
+            cout << data[i] << " ";
+        }
+        cout << endl;
+    }
+
+};
+
+int main() {
+    int numElements;
+    cin >> numElements;
+    NumericData originalData(numElements);
+    for (int i = 0; i < numElements; ++i) {
+        double value;
+        cin >> value;
+        originalData.setData(i, value);
+    }
+    NumericData copiedData = originalData;
+    originalData.displayNumericData("Original Data:");
+    copiedData.displayNumericData("Copied Data:");
