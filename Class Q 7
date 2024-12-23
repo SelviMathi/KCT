@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    int id;
+    string department;
+
+public:
+    Employee(string emp_Name, int emp_ID, string emp_Dep) : name(emp_Name), id(emp_ID), department(emp_Dep) {}
+
+    // Copy constructor (deep copy)
+    void setEmployeeInfo(const string& emp_Name, int emp_ID, const string& emp_Dep) {
+        name = emp_Name;
+        id = emp_ID;
+        department = emp_Dep;
+    }
+    
+    Employee(const Employee& other) 
+    {
+        name=other.name;
+        id=other.id;
+        department=other.department; 
+    }
+
+    
+
+    void display() {
+        cout << "Name: " << name << ", ID: " << id << ", Department: " << department << endl;
+    }
+};
+
+int main() {
+    string name;
+    int id;
+    string department;
+    getline(cin, name);
+    cin >> id;
+    cin.ignore(); // Clear the newline character from the input buffer
+    getline(cin, department);
+    
+    Employee original(name, id, department);
+    Employee copied = original;
+
+    cout << "Original Employee Details:" << endl;
+    original.display();
+    cout << "Copied Employee Details:" << endl;
+    copied.display();
+    return 0;
+}
