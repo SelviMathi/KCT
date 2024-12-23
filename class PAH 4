@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string Name;
+    int Marks;
+
+public:
+    Student() {
+        Name = "";
+        Marks = 0;
+    }
+
+    Student(string name, int marks) {
+        Name = name;
+        Marks = marks;
+    }
+
+    string get_Name() {
+        return Name;
+    }
+
+
+    int get_Marks() {
+        return Marks;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    Student students[n];
+
+    for (int i = 0; i < n; i++) {
+        string name;
+        int  marks;
+
+        cin >> name;
+        cin >> marks;
+
+        students[i] = Student(name, marks);
+    }
+
+    Student bestStudent = students[0];
+
+    for (int i = 1; i < n; i++) {
+        if (students[i].get_Marks() > bestStudent.get_Marks()) {
+            bestStudent = students[i];
+        }
+    }
+
+    cout << bestStudent.get_Name() << " " << bestStudent.get_Marks();
+
+    return 0;
+}
