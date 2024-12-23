@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int age;
+    float gpa;
+
+public:
+    Student(const string& studentName, int studentAge, float studentGPA) : name(studentName), age(studentAge), gpa(studentGPA) {}
+    Student(const Student& other) {
+        name = other.name;
+        age = other.age;
+        gpa = other.gpa;
+    }
+    void setStudentInfo(const string& studentName, int studentAge, float studentGPA) {
+        name = studentName;
+        age = studentAge;
+        gpa = studentGPA;
+    }
+    void displayStudentInfo() {
+        cout << "Name: " << name << ", Age: " << age << ", GPA: " << gpa << endl;
+    }
+};
+
+int main() {
+    string name;
+    int age;
+    float gpa;
+    getline(cin, name);
+    cin >> age;
+    cin >> gpa;
+    Student student1(name, age, gpa);
+    Student student2 = student1;
+    cout << "Original Student Information:" << endl;
+    student1.displayStudentInfo();
+    cout << "Copied Student Information:" << endl;
+    student2.displayStudentInfo();
+    return 0;
+}
