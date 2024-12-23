@@ -1,0 +1,94 @@
+#include<bits/stdc++.h>
+using namespace std;
+class MyClass
+{
+    public:
+    MyClass() {
+        cout <<"Hello World!";
+        }
+};
+    int main() {
+        MyClass Obj,Obj1;
+        Obj1=Obj;
+        return 0;
+        
+    }
+
+
+**************Shallow copy constructor************
+
+#include <iostream>
+using namespace std;
+class ShallowCopy {
+private:
+    int* data;
+public:
+    ShallowCopy(int value) {
+        data = new int;  
+        *data = value;   
+        }
+    ShallowCopy(const ShallowCopy& other) {
+        data = other.data;  
+    }
+   void display() const {
+        cout << "Data: " << *data << endl;
+    }
+   ~ShallowCopy() {
+        delete data;
+cout<<"Deleted\n";
+  
+    }
+};
+int main() {
+    ShallowCopy obj1(10);  
+    ShallowCopy obj2 = obj1;  
+
+    cout << "Object 1: ";
+    obj1.display();
+    cout << "Object 2: ";
+    obj2.display();
+
+    return 0;
+}
+
+**************Deep copy constructor************
+
+#include <iostream>
+using namespace std;
+
+class DeepCopy {
+private:
+    int* data;
+
+public:
+    DeepCopy(int value) {
+        data = new int;  
+        *data = value;   
+        }
+    DeepCopy(const DeepCopy& other) {
+      data=new int;
+      *data = *(other.data);  
+    }
+   void display() const {
+        cout << "Data: " << *data << endl;
+    }
+ 
+    ~DeepCopy() {
+        delete data;  
+        cout<<"Deleted\n";
+    }
+};
+
+int main() {
+    DeepCopy obj1(10);  
+    DeepCopy obj2 = obj1;  
+
+    cout << "Object 1: ";
+    obj1.display();
+    cout << "Object 2: ";
+    obj2.display();
+
+    return 0;
+}
+
+
