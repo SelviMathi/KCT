@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Population {
+public:
+    int initial,rate,years;
+
+    Population() {
+        initial = 0;
+        rate = 0;
+        years = 0;
+    }
+
+    int calculate() {
+        int finalPopulation = initial + (rate*years);
+        return finalPopulation;
+    }
+};
+
+int main() {
+    Population pop;
+    cin >> pop.initial >> pop.rate >> pop.years;
+    int finalPopulation = pop.calculate();
+
+    cout << finalPopulation;
+
+    return 0;
+}
