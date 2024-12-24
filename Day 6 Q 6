@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    string n, i;
+    
+    Person(string name, string id) {
+        n = name;
+        i = id;
+    }
+};
+
+class Score {
+public:
+    double s;
+
+    Score(double score) {
+        s = score;
+    }
+};
+
+class UndergraduateStudent : public Person, public Score {
+public:
+    UndergraduateStudent(string name, string id, double score) 
+        : Person(name, id), Score(score) {}
+
+    void displayGrade() {
+        char grade = (s >= 90) ? 'A' :
+                     (s >= 80) ? 'B' :
+                     (s >= 70) ? 'C' :
+                     (s >= 60) ? 'D' : 'F';
+
+        cout << "Student " << n << " with ID " << i << " received grade " << grade << "." << endl;
+    }
+};
+
+class PostgraduateStudent : public Person, public Score {
+public:
+    PostgraduateStudent(string name, string id, double score) 
+        : Person(name, id), Score(score) {}
+
+    void displayResult() {
+        cout << "Student " << n << " with ID " << i << " " 
+             << ((s >= 60) ? "Pass" : "Fail") << " the course." << endl;
+    }
+};
+
+int main() {
+    string ugN, ugI, pgN, pgI;
+    double ugS, pgS;
+
+    cin >> ugN >> ugI >> ugS;
+    cin >> pgN >> pgI >> pgS;
+  UndergraduateStudent ug(ugN, ugI, ugS);  
+  PostgraduateStudent pg(pgN, pgI, pgS); 
+    ug.displayGrade();
+    pg.displayResult();
+
+    return 0;
+}
