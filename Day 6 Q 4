@@ -1,17 +1,10 @@
-// You are using GCC
 #include <iostream>
-#include <string>
 #include <iomanip> 
 using namespace std;
 
 class BMI {
 public:
-    double wt,ht;
-    
-    BMI(double w, double h) {
-        wt = w;
-        ht = h;
-    }
+    double wt, ht;
 
     double calculateBMI() {
         return wt / (ht * ht);
@@ -19,43 +12,29 @@ public:
 };
 
 class BloodPressure {
-protected:
-    int sys,diastolic;
-
 public:
-    BloodPressure(int s, int d) {
-        sys = s;
-        diastolic = d;
+    int sys, diastolic;
+};
+
+class Health : public BMI, public BloodPressure {
+public:
+    void assessHealth() {
+        double bmi = calculateBMI();
+        cout << fixed << setprecision(2) << "BMI: " << bmi << endl << "Health Status: ";
+        if (bmi < 18.5 && sys < 90 && diastolic < 60) 
+            cout << "Underweight with Low Blood Pressure";
+        else if (bmi >= 18.5 && bmi < 24.9 && sys >= 90 && sys <= 120 && diastolic >= 60 && diastolic <= 80) 
+            cout << "Healthy Weight with Normal Blood Pressure";
+        else if (bmi >= 25.0 && bmi < 29.9 && sys > 120 && diastolic > 80) 
+            cout << "Overweight with High Blood Pressure";
+        else
+            cout << "Health Risk Undefined";
     }
 };
 
-class Health : protected BMI, protected BloodPressure {
-public:
-    Health(double w, double h, int sys, int dia) : BMI(w, h), BloodPressure(sys, dia) 
-     {
-     }
-
-    void assessHealth() {
-        double bmi = calculateBMI();
-        cout<<fixed<<setprecision(2)<<"BMI: "<<bmi<<endl<<"Health Status: ";
-        if (bmi < 18.5 && sys < 90 && diastolic < 60) 
-            cout<<fixed<<setprecision(2)<<"Underweight with Low Blood Pressure";
-        else if (bmi >= 18.5 and bmi < 24.9 && sys >= 90 && sys <= 120 && diastolic >= 60 && diastolic <= 80) 
-            cout<<fixed<<setprecision(2)<<"Healthy Weight with Normal Blood Pressure";
-        else if (bmi >= 25.0 and bmi < 29.9 && sys > 120 && diastolic > 80) 
-            cout<<fixed<<setprecision(2)<<"Overweight with High Blood Pressure";
-        else
-        cout<<fixed<<setprecision(2)<<"Health Risk Undefined";
-        }
-};
-
 int main() {
-    double w, h;
-    int sy, di;
+    Health obj;
+    cin >> obj.wt >> obj.ht >> obj.sys >> obj.diastolic;
 
-    cin >> w>>h>> sy >> di;
-
-    Health obj(w,h,sy,di);
-    obj.assessHealth();
-    return 0;
+    obj.assessHealth(); return 0;
 }
