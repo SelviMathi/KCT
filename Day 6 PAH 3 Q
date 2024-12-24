@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+class Product {
+public:
+    string n;
+    double p;
+    int q;
+
+    double calcCost() {
+        return p * q;
+    }
+};
+
+class Electronics : public Product {
+public:
+    double calcElecCost() {
+        double cost = p * q;
+        if (q >= 3) {
+            cost *= 0.9; 
+        }
+        return cost;
+    }
+};
+
+class Clothing : public Product {
+public:
+    double calcClothCost() {
+        double cost = p * q;
+        if (q >= 5) {
+            cost *= 0.95; 
+        }
+        return cost;
+    }
+};
+
+class OrderCalculator : public Electronics, public Clothing {
+public:
+    double calcTotalCost() {
+        double elecCost = Electronics::calcElecCost();
+        double clothCost = Clothing::calcClothCost();
+        return elecCost + clothCost;
+    }
+};
+
+int main() {
+    string en, cn;
+    double ep, cp;
+    int eq, cq;
+
+    cin >> en >> ep >> eq;
+    Electronics electronics;
+    electronics.n = en;
+    electronics.p = ep;
+    electronics.q = eq;
+
+    cin >> cn >> cp >> cq;
+    Clothing clothing;
+    clothing.n = cn;
+    clothing.p = cp;
+    clothing.q = cq;
+
+    OrderCalculator order;
+    order.Electronics::n = electronics.n;
+    order.Electronics::p = electronics.p;
+    order.Electronics::q = electronics.q;
+    
+    order.Clothing::n = clothing.n;
+    order.Clothing::p = clothing.p;
+    order.Clothing::q = clothing.q;
+
+    double totalCost = order.calcTotalCost();
+    cout << fixed << setprecision(2) << "Total Order Cost: Rs. " << totalCost;
+
+    return 0;
+}
