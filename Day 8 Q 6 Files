@@ -21,13 +21,11 @@ fout.close();
 
     int num,evenCount = 0,oddCount = 0;
     while (fin >> num) {
-        if (num % 2 == 0) {
+        if (num % 2 == 0) 
             evenCount++;
-        } 
-        else {
+        else 
             oddCount++;
         }
-    }
 
     cout << "Even: " << evenCount << endl<<"Odd: " << oddCount << endl;
 
