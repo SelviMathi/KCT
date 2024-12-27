@@ -1,0 +1,64 @@
+#include <iostream>
+#include <exception>
+
+using namespace std;
+
+class InvalidIDException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Error: Invalid eyeglass ID.";
+    }
+};
+
+class OutOfStockException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Error: Eyeglass out of stock.";
+    }
+};
+
+class OpticalShowroom {
+    static const int MAX_STOCK = 10;
+    int eyeglasses[MAX_STOCK];
+    int stockSize = 0;
+
+public:
+    void addEyeglass(int id) {
+        if (id <= 0) throw InvalidIDException();
+        if (stockSize >= MAX_STOCK) throw OutOfStockException();
+        eyeglasses[stockSize++] = id;
+        cout << "Eyeglass with ID " << id << " added to the showroom.\n";
+    }
+
+    void sellEyeglass(int id) {
+        for (int i = 0; i < stockSize; ++i) {
+            if (eyeglasses[i] == id) {
+                for (int j = i; j < stockSize - 1; ++j) {
+                    eyeglasses[j] = eyeglasses[j + 1];
+                }
+                --stockSize;
+                cout << "Eyeglass with ID " << id << " sold.\n";
+                return;
+            }
+        }
+        throw InvalidIDException();
+    }
+};
+
+int main() {
+    OpticalShowroom showroom;
+    try {
+        int n, id, customerID;
+        cin >> n;
+        for (int i = 0; i < n; ++i) {
+            cin >> id;
+            showroom.addEyeglass(id);
+        }
+        cin >> customerID;
+        showroom.sellEyeglass(customerID);
+    } 
+    catch (const exception& e) {
+        cout << "Exception caught. " << e.what() << "\n";
+    }
+    return 0;
+}
