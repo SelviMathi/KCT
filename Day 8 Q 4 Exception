@@ -1,4 +1,60 @@
 #include <iostream>
+#include <string>
+
+using namespace std;
+
+const int MAX_STOCK = 10;
+int eyeglasses[MAX_STOCK];
+int stockSize = 0;
+
+void addEyeglass(int id) {
+    if (id <= 0) throw string("Error: Invalid eyeglass ID.");
+    if (stockSize >= MAX_STOCK) throw string("Error: Eyeglass out of stock.");
+    eyeglasses[stockSize++] = id;
+    cout << "Eyeglass with ID " << id << " added to the showroom.\n";
+}
+
+void sellEyeglass(int id) {
+    for (int i = 0; i < stockSize; ++i) {
+        if (eyeglasses[i] == id) {
+            for (int j = i; j < stockSize - 1; ++j) {
+                eyeglasses[j] = eyeglasses[j + 1];
+            }
+            --stockSize;
+            cout << "Eyeglass with ID " << id << " sold.\n";
+            return;
+        }
+    }
+    throw string("Error: Invalid eyeglass ID.");
+}
+
+int main() {
+    try {
+        int n, id, customerID;
+        cin >> n;
+
+        for (int i = 0; i < n; ++i) {
+            cin >> id;
+            addEyeglass(id);
+        }
+
+        cin >> customerID;
+        sellEyeglass(customerID);
+    } 
+    catch (const string& e) {
+        cout << "Exception caught. " << e << "\n";
+    }
+    return 0;
+}
+
+
+
+or     
+
+
+
+
+#include <iostream>
 #include <exception>
 
 using namespace std;
