@@ -1,0 +1,36 @@
+// You are using GCC
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+    ofstream fout;
+    fout.open("ages.txt");
+    int n;
+    cin>>n;
+    if(n>20)
+    {
+        cout<<"Exceeding limit!";
+        return 0;
+    }
+    else
+    {
+        int age;
+        for(int i=1;i<=n;i++)
+        cin>>age;
+        fout<<age;
+    }
+    fout.close("ages.txt");
+    ifstream fin;
+    fin.open("ages.txt");
+    int num;
+    float sum=0,avg;
+    while(fin>>num)
+    {
+        sum=sum+num;
+    }
+    avg=sum/num;
+    cout<<avg;
+    fin.close("ages.txt");
+    return 0;
+}
