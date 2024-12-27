@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-    ofstream outfile;
-    outfile.open("ages.txt");
+    ofstream fout;
+    fout.open("ages.txt");
 
     int n;
     cin >> n;
@@ -19,23 +19,22 @@ int main() {
         for (int i = 0; i < n; i++) {
             int age;
             cin >> age;
-            outfile << age << " ";
+            fout << age << " ";
         }
     }
-    outfile.close();
+    fout.close();
 
-    ifstream infile;
-    infile.open("ages.txt");
+    ifstream fin;
+    fin.open("ages.txt");
 
-    int age;
-    float sum = 0;
-    float average;
-    while (infile >> age) {
-        sum += age;
+    int num;
+    float sum = 0,average;
+    while (fin >> num) {
+        sum += num;
         average = sum / n;
     }  
     cout << fixed << setprecision(1) << average << endl;   
 
-    infile.close();
+    fin.close();
     return 0;
 }
