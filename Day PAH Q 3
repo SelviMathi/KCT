@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> vec;
+    int size, num;
+    cin >> size;
+    for (int i = 0; i < size; ++i) {
+        cin >> num;
+        vec.push_back(num);
+    }
+    int even = 0;
+    for (int element : vec) {
+        if (element % 2 == 0) {
+            even++;
+        }
+    }
+
+    cout << even << endl;
+
+    return 0;
+}
