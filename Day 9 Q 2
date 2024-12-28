@@ -1,0 +1,31 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+void removeElement(list<int>& var, int target) {
+    var.remove(target);
+}
+
+int main() {
+    int size;
+    cin >> size;
+
+    list<int> data;
+    int input;
+
+    for (int i = 0; i < size; ++i) {
+        cin >> input;
+        data.push_back(input);
+    }
+
+    int target;
+    cin >> target;
+
+    removeElement(data, target);
+
+   for(int i:data)
+   cout<<i<<" ";
+    cout << endl;
+
+    return 0;
+}
