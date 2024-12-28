@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    auto sum = [](int a, int b) 
+    {
+      return a + b;
+    };
+    
+    int a,b;
+    cin>>a>>b;
+    cout <<sum(a, b) << endl;
+    
+    return 0;
+}
