@@ -1,0 +1,30 @@
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+void getUniqueElements(list<int>& var) {
+    var.sort();
+    var.unique();
+}
+
+int main() {
+    int size;
+    cin >> size;
+
+    list<int> li;
+    int num;
+
+    for (int i = 0; i < size; ++i) {
+        cin >> num;
+        li.insert(li.end(), num); 
+    }
+
+    getUniqueElements(li);
+
+    for (int num : li) {
+        cout << num << " ";
+    }
+
+    return 0;
+}
